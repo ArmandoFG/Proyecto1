@@ -5,6 +5,7 @@
  */
 package circuitos;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ public class Ventana extends JFrame implements ActionListener{
   private Panel1 jPanel1;
   private Panel3 jPanel3;
   JScrollPane Scroll;
+  
 
     /**
      * Creacion de la ventana 
@@ -39,9 +41,12 @@ public class Ventana extends JFrame implements ActionListener{
         
         // Se crean los paneles a usar en la interfaz
 
-        Panel1 jPanel1 = new Panel1();
-        Panel2 jPanel2 = new Panel2();
-        Panel3 jPanel3 = new Panel3();
+       Panel1 jPanel1 = new Panel1();
+       Panel2 jPanel2 = new Panel2();
+       Panel3 jPanel3 = new Panel3();
+       
+       
+       
         
         Scroll = new JScrollPane();
         Scroll.setBounds(100,112,200,200);
@@ -55,7 +60,7 @@ public class Ventana extends JFrame implements ActionListener{
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 170, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

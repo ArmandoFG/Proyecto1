@@ -1,6 +1,8 @@
 package circuitos;
 
 
+
+import Compuertas.And;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -12,13 +14,16 @@ import javax.swing.*;
 public class Panel2 extends JPanel implements ActionListener{
     
     
-    
+  
 
     public Panel2() {
         
         this.setBackground(new java.awt.Color(113, 176, 140));
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         this.setPreferredSize(new java.awt.Dimension(600, 900));
+        
+        
+        
         
         
         
