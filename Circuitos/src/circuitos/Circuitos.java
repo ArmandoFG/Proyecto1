@@ -20,12 +20,12 @@ public class Circuitos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Ventana ventana1= new Ventana();
+        Ventana ventana1 = new Ventana();
         ventana1.setVisible(true);
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
         
     }
-    
+     
 }
