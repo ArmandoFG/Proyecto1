@@ -74,9 +74,12 @@ public class Panel1 extends JPanel implements ActionListener{
 
             @Override
             public void mousePressed(MouseEvent e) {
-                JComponent jc = (JComponent)e.getSource();
-                TransferHandler th = jc.getTransferHandler();
-                th.exportAsDrag(jc, e, TransferHandler.COPY);
+                if(e.getButton()==MouseEvent.BUTTON3){
+                    JComponent jc = (JComponent)e.getSource();
+                    TransferHandler th = jc.getTransferHandler();
+                    th.exportAsDrag(jc, e, TransferHandler.COPY);
+                }
+                
                 
                 
                 
@@ -106,12 +109,20 @@ public class Panel1 extends JPanel implements ActionListener{
         AND.setTransferHandler(new TransferHandler("icon"));
         NAND.setTransferHandler(new TransferHandler("icon"));
         OR.setTransferHandler(new TransferHandler("icon"));
+        NOR.setTransferHandler(new TransferHandler("icon"));
+        NOT.setTransferHandler(new TransferHandler("icon"));
+        XNOR.setTransferHandler(new TransferHandler("icon"));
+        XOR.setTransferHandler(new TransferHandler("icon"));
         
         
         
         AND.addMouseListener(ml);
         NAND.addMouseListener(ml);
         OR.addMouseListener(ml);
+        NOR.addMouseListener(ml);
+        NOT.addMouseListener(ml);
+        XNOR.addMouseListener(ml);
+        XOR.addMouseListener(ml);
        
        
         

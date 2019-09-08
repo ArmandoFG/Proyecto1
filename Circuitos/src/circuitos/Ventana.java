@@ -46,7 +46,7 @@ public class Ventana extends JFrame implements ActionListener{
        jPanel3 = new Panel3();
        
        scroll = new JScrollPane();
-       scroll.setBounds(5, 112, 360, 200);
+       scroll.setBounds(10, 136, 390, 250);
        scroll.setViewportView(jPanel2);
        
         

@@ -5,6 +5,8 @@ package circuitos;
 import Compuertas.And;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import javax.swing.*;
 
 
@@ -14,9 +16,11 @@ import javax.swing.*;
  *
  * @author arman
  */
-public class Panel2 extends JPanel { 
+public class Panel2 extends JPanel implements MouseMotionListener { 
 
-    And AND;
+    
+    MouseMotionListener mover;
+    
     JLabel prueba;
     JLabel uno;
     JLabel dos;
@@ -36,6 +40,12 @@ public class Panel2 extends JPanel {
         
         
         
+        
+        
+        
+        
+        
+    //________________________________________________________________________________________________________________________________________________________________________________    
         this.setBackground(new java.awt.Color(113, 176, 140));
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         this.setPreferredSize(new java.awt.Dimension(800, 900));
@@ -110,55 +120,69 @@ public class Panel2 extends JPanel {
         doce.setIcon(new ImageIcon("C:\\Users\\arman\\OneDrive\\Escritorio\\Proyecto1\\Circuitos\\src\\Imagenes\\punto.png"));
         this.add(doce);
 
-
+//_____________________________________________________________________________________________________________________________________________
         
 
         
-        Point punto=MouseInfo.getPointerInfo().getLocation();
-        int x=punto.x;
-        int y=punto.y;
         
+    //_____________________________________________________________________________________________________________________________________    
         prueba.setTransferHandler(new TransferHandler("icon"));
-        prueba.addMouseListener(Panel1.ml);
+        
         
         uno.setTransferHandler(new TransferHandler("icon"));
-        uno.addMouseListener(Panel1.ml);
+        
         
         dos.setTransferHandler(new TransferHandler("icon"));
-        dos.addMouseListener(Panel1.ml);
+        
         
         tres.setTransferHandler(new TransferHandler("icon"));
-        tres.addMouseListener(Panel1.ml);
+        
         
         cuatro.setTransferHandler(new TransferHandler("icon"));
-        cuatro.addMouseListener(Panel1.ml);
+        
         
         cinco.setTransferHandler(new TransferHandler("icon"));
-        cinco.addMouseListener(Panel1.ml);
+        ;
         
         seis.setTransferHandler(new TransferHandler("icon"));
-        seis.addMouseListener(Panel1.ml);
+        
         
         siete.setTransferHandler(new TransferHandler("icon"));
-        siete.addMouseListener(Panel1.ml);
+        
         
         ocho.setTransferHandler(new TransferHandler("icon"));
-        ocho.addMouseListener(Panel1.ml);
+        
         
         nueve.setTransferHandler(new TransferHandler("icon"));
-        nueve.addMouseListener(Panel1.ml);
+        
         
         diez.setTransferHandler(new TransferHandler("icon"));
-        diez.addMouseListener(Panel1.ml);
+        
         
         once.setTransferHandler(new TransferHandler("icon"));
-        once.addMouseListener(Panel1.ml);
+        
         
         doce.setTransferHandler(new TransferHandler("icon"));
-        doce.addMouseListener(Panel1.ml);
         
         
+        uno.addMouseMotionListener(this);
+        //uno.addMouseMotionListener(mover);
+   //________________________________________________________________________________________________________________________________________     
     }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        
+        if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK){
+                    uno.setLocation(e.getPoint());
+                    uno.repaint();
+    }
+    }
+    @Override
+    public void mouseMoved(MouseEvent e) {
+    }
+    
+    
     
     
     }
