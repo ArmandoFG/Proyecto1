@@ -11,4 +11,22 @@ package circuitos;
  */
 public class Fabrica_circuitos {
     
+    /**
+     *
+     * @param tipo
+     * @return
+     */
+    //public static Fabrica_circuitos construir(String tipo){
+        
+       // switch (tipo){
+            
+            //case "And":
+                  
+            
+     //   }
+        
+    
+    
+
+   // }
 }

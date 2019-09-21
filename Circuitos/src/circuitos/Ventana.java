@@ -6,8 +6,11 @@
 package circuitos;
 
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 import javax.swing.*;
@@ -18,10 +21,13 @@ import javax.swing.*;
  */
 public class Ventana extends JFrame implements ActionListener{
 
-  Panel2 jPanel2;
-  Panel1 jPanel1;
-  Panel3 jPanel3;
+  static Panel2 jPanel2;
+  static Panel1 jPanel1;
+  static Panel3 jPanel3;
   JScrollPane scroll;
+  BufferedImage fondo;
+  BufferedImage linea;
+
   
 
     /**
@@ -48,6 +54,9 @@ public class Ventana extends JFrame implements ActionListener{
        scroll = new JScrollPane();
        scroll.setBounds(10, 136, 390, 250);
        scroll.setViewportView(jPanel2);
+       
+       //jPanel2.iniciar();
+       
        
         
         
@@ -119,6 +128,11 @@ public class Ventana extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+   
+    
+   
 
     
                          

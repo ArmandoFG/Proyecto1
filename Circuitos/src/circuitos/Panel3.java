@@ -16,6 +16,8 @@ import javax.swing.*;
 public class Panel3 extends JPanel implements ActionListener {
     
     
+    
+    
     public Panel3(){
         
         this.setBackground(new java.awt.Color(102, 203, 175));
