@@ -28,9 +28,9 @@ public class Nodo_lineas {
         
         
 }
-    public void pintar(Graphics g, JPanel panel){
-        g = jPanel2.getGraphics();
+    public void pintar(Graphics g){
         g.drawLine(x1, y1, x2, y2);
+        
     }
 
     public int getX1() {

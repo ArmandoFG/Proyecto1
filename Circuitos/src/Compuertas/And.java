@@ -4,7 +4,15 @@ package Compuertas;
 
 import static circuitos.Circuitos.lc;
 import circuitos.Nodo_draw;
+import circuitos.Nodo_lineas;
 import static circuitos.Panel1.vectorNodos;
+import static circuitos.Panel2.Mo;
+import static circuitos.Panel2.current_x;
+import static circuitos.Panel2.current_y;
+import static circuitos.Panel2.mover;
+import static circuitos.Panel2.vectorlineas;
+import static circuitos.Panel2.x_mouse;
+import static circuitos.Panel2.y_mouse;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -73,8 +81,8 @@ public class And extends JLabel {
         
         this.addMouseListener(ml);
         
-        
-       
+        //this.addMouseListener(Mo);
+        //this.addMouseMotionListener(mover);
         
      
 
@@ -117,9 +125,23 @@ public class And extends JLabel {
         return salida_and;
         
     }
+   
+    /*
+    @Override
+    public void paintComponent(Graphics g)
+{
+    super.paintComponent(g);
+    for (Nodo_lineas linea : vectorlineas){
+        linea.pintar(g);
+    }
+    g.drawLine(x_mouse, y_mouse, current_x, current_y);
+    repaint();
+   
+   
+}
 
-    
-
+   
+*/
    
 
 }

@@ -9,6 +9,9 @@ package circuitos;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -27,8 +30,8 @@ public class Ventana extends JFrame implements ActionListener{
   JScrollPane scroll;
   BufferedImage fondo;
   BufferedImage linea;
-
-  
+ 
+ 
 
     /**
      * Creacion de la ventana 
@@ -36,7 +39,7 @@ public class Ventana extends JFrame implements ActionListener{
     public Ventana() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Icono.png/")).getImage());
-        
+        //this.getContentPane().add(jPanel2);
         
     }
 
@@ -51,14 +54,14 @@ public class Ventana extends JFrame implements ActionListener{
        jPanel2 = new Panel2();
        jPanel3 = new Panel3();
        
+       
+       
        scroll = new JScrollPane();
        scroll.setBounds(10, 136, 390, 250);
        scroll.setViewportView(jPanel2);
        
        //jPanel2.iniciar();
-       
-       
-        
+    
         
         
 
@@ -122,6 +125,10 @@ public class Ventana extends JFrame implements ActionListener{
 
         setSize(new java.awt.Dimension(876, 619));
         setLocationRelativeTo(null);
+        
+        
+        
+        
     }                     
 
     @Override

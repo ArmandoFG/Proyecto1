@@ -147,10 +147,7 @@ public class Panel1 extends JPanel implements ActionListener{
             public void mouseClicked(MouseEvent e) {
                 x_M = e.getX();
                 y_M = e.getY();
-               // if(e.getButton()==MouseEvent.BUTTON1 && Source == AND){
-                 //       System.out.println(e.getX() + " " + e.getY());
-                        
-               // }
+               
                 
                 if(e.getButton()==MouseEvent.BUTTON1){
                     System.out.println(e.getSource());
@@ -232,6 +229,7 @@ public class Panel1 extends JPanel implements ActionListener{
                         And.crear_comp(e.getX(), e.getY(), jPanel2);
                         jPanel2.updateUI();
                         
+                        
                 }
                     
                     
@@ -265,6 +263,7 @@ public class Panel1 extends JPanel implements ActionListener{
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == XOR && e.getSource() == jPanel2){
                         Xor.crear_comp(e.getX(), e.getY(), jPanel2);
                         jPanel2.updateUI();     
+                        jPanel2.repaint();
                     }
                 
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == Entrada0 && e.getSource() == jPanel2){
@@ -278,14 +277,7 @@ public class Panel1 extends JPanel implements ActionListener{
                         Circuitos.Num_entradas += 1;
                         
                     }
-                /*
-                if (e.getButton() == MouseEvent.BUTTON1){
-                    for(Nodo_draw nodo : vectorNodos){
-                        nodo.Compuerta.addMouseListener(this);
-                        System.out.println(e.getSource());
-                        nodo.Compuerta.setLocation(nodo.Compuerta.getX() + e.getX(), nodo.Compuerta.getY() + e.getY());
-                        }                
-                    }*/
+                
                 }
                 
                 
@@ -328,7 +320,7 @@ public class Panel1 extends JPanel implements ActionListener{
         Entrada1.addMouseListener(ml);
         Entrada0.addMouseListener(ml);
         seleccionado.addMouseListener(ml);
-        //this.addMouseListener(ml);
+        
         
         
         
