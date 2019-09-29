@@ -6,13 +6,9 @@
 package circuitos;
 
 
-import java.awt.Graphics;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
@@ -23,13 +19,16 @@ import javax.swing.*;
  * @author Armando Fallas
  */
 public class Ventana extends JFrame implements ActionListener{
+    
+  //Variables de las clases paneles
 
   static Panel2 jPanel2;
   static Panel1 jPanel1;
   static Panel3 jPanel3;
+  
+  //Scroll a usar en panel2
   JScrollPane scroll;
-  BufferedImage fondo;
-  BufferedImage linea;
+
  
  
 
@@ -37,6 +36,7 @@ public class Ventana extends JFrame implements ActionListener{
      * Creacion de la ventana 
      */
     public Ventana() {
+        //Se inicia los componentes de las ventanas y se le asigna un icono al programa
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/Icono.png/")).getImage());
         //this.getContentPane().add(jPanel2);
@@ -54,20 +54,20 @@ public class Ventana extends JFrame implements ActionListener{
        jPanel2 = new Panel2();
        jPanel3 = new Panel3();
        
-       
+       // Crea el scroll y se le asigna al jpanel2 con sus dimensiones deseadas
        
        scroll = new JScrollPane();
        scroll.setBounds(10, 136, 390, 250);
        scroll.setViewportView(jPanel2);
        
-       //jPanel2.iniciar();
+      
     
         
-        
-
+       // Instruccion para cerrar el programa 
+       
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
-        // Se crea un layout
+        // Se crea un layout donde se acomodan al gusto los 3 paneles a usar en el programa
      
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,7 +129,8 @@ public class Ventana extends JFrame implements ActionListener{
         
         
         
-    }                     
+    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {

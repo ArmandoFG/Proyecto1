@@ -2,7 +2,11 @@
 package Compuertas;
 
 import static circuitos.Circuitos.lc;
+import circuitos.Nodo;
 import circuitos.Nodo_draw;
+import static circuitos.Nodo_draw.cont_i1;
+import static circuitos.Nodo_draw.cont_i2;
+import static circuitos.Nodo_draw.cont_out;
 import static circuitos.Panel1.vectorNodos;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -12,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author arman
  */
-public class Xnor extends JLabel{
+public class Xnor extends JLabel implements OpXnor{
     
     int salida_Xnor;
     
@@ -22,35 +26,30 @@ public class Xnor extends JLabel{
     
     public Xnor(){
         
-        this.setBounds(1, 320, 100, 100);
+        this.setBounds(1, 320, 110, 100);
         this.setIcon(new ImageIcon("C:\\Users\\arman\\OneDrive\\Escritorio\\Proyecto1\\Circuitos\\src\\Imagenes\\Xnor.png"));
         
         
     }
     
-    public void operacion(int entrada1, int entrada2){
-        if(entrada1 == 0 && entrada2 == 0){
+    @Override
+    public int operacion(int entrada1, int entrada2){
+        
+        salida_Xnor = entrada1 + entrada2;
+        if (salida_Xnor == 0){
+            return 1;
             
-            salida_Xnor = 1;
-        }
-        if(entrada1 == 1 && entrada2 == 0){
+        }else if (salida_Xnor == 1){
+            return 0;
             
-            salida_Xnor = 0;
-        }
-        if(entrada1 == 0 && entrada2 == 1){
-            
-            salida_Xnor = 0;
-        }
-        if(entrada1 == 1 && entrada2 == 1){
-            
-            salida_Xnor = 1;
+        }else {
+            return 1;
         }
         
     }
-    public int getsalida(){
-        return salida_Xnor;
-    }
-    public static void crear_comp (int x, int y,JPanel panel){
+    
+    public static void crear_comp (int x, int y,JPanel panel, Nodo Nodoas, String Nombre){
+        Nodo NodoAs = Nodoas;
         cont_Xnor = 0;
         Xnor = "Entrada0" + Integer.toString(cont_Xnor);
         Xnor Xnor = new Xnor();
@@ -61,9 +60,11 @@ public class Xnor extends JLabel{
         System.out.println(Xnor.getName());
         string = Xnor.getGraphics();
         string.drawString("I1", x - 7, y - 7);
-        vectorNodos.add(new Nodo_draw(Xnor));
+        vectorNodos.add(new Nodo_draw(Xnor, NodoAs, Nombre, cont_i1, cont_i2, cont_out));
         cont_Xnor += 1;
-    
+        cont_i1 += 2;
+        cont_i2 += 2;
+        cont_out++;
 }
     
 }

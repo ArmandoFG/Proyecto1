@@ -10,6 +10,8 @@ import Compuertas.Not;
 import Compuertas.Or;
 import Compuertas.Xnor;
 import Compuertas.Xor;
+import static circuitos.Circuitos.lc;
+import static circuitos.Lista_Compuertas.Calculos;
 
 
 import static circuitos.Ventana.jPanel1;
@@ -34,7 +36,7 @@ import javax.swing.*;
  */
 public class Panel1 extends JPanel implements ActionListener{
     
-    // Variables a usar para cargar las imagenes de cada compuerta
+    // Variables a usar para cargar las imagenes de cada compuerta en la paleta
     
     static And AND;
     Nand NAND;
@@ -46,55 +48,74 @@ public class Panel1 extends JPanel implements ActionListener{
     Entrada_1 Entrada1;
     Entrada_0 Entrada0;
     
+    
+    // Variables para eventos del mouse al seleccionar una compuerta de la paleta
     static MouseListener ml;
     MouseListener mp;
     
+    // Variables para saber el tipo de compuerta seleccionada
     static Object Source;
     static Object TempSource;
-    static int x_M;
-    static int y_M;
     
+    
+    // Variables a usar para el movimiento de las compuertas en pantalla
     static Nodo_draw Nodo_move;
     static int in_nodo;
-   
+    static int in_nodor;
+    
+    // Vector a usar para dibujar compuertas
     public static Vector<Nodo_draw> vectorNodos;
     
+    
+    // Variables a usar para ver que compuerta hemos seleccionado
     JLabel seleccionado;
     static String elemento;
     
+    // Variables para el texto de las categorias de la paleta
     JLabel texto_c;
     JLabel texto_E;
     JLabel texto_S;
     
+    static String Nombre_comp;
+    int indice;
+    
+    static int Dato;
     public Panel1(){
         // Se agrega el color y los bordes al panel1
         this.setBackground(new java.awt.Color(102, 203, 175));
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         
-        Point punto=MouseInfo.getPointerInfo().getLocation();
         
-        
-        int x=punto.x;
-        int y=punto.y;
         
         vectorNodos = new Vector<>();
-        
-              
+        Nombre_comp = null;
 
         //Instancias de las compuertas
         
         AND = new And();
         NAND = new Nand();
+        NAND.setName("NAND");
         OR = new Or();
+        OR.setName("OR");
         NOR = new Nor();
+        NOR.setName("NOR");
         NOT = new Not();
+        NOT.setName("NOT");
         XOR = new Xor();
+        XOR.setName("XOR");
         XNOR = new Xnor();
+        XNOR.setName("XNOR");
         Entrada1 = new Entrada_1();
+        Entrada1.setName("DATO");
         Entrada0 = new Entrada_0();
+        Entrada1.setName("DATO");
+        
+        // JLabel donde se almacena la imagen de la compuerta seleccionada
         
         seleccionado = new JLabel();
         seleccionado.setBounds(50, 600, 110, 100);
+        
+        // Tamaño, fuente de los textos de la paleta
         
         texto_c = new JLabel();
         texto_c.setBounds(60, -10, 110, 100);
@@ -115,6 +136,8 @@ public class Panel1 extends JPanel implements ActionListener{
         
         
         AND.setBounds(10, 30, 100, 100);
+        AND.setName("AND");
+        
         
         
         
@@ -145,32 +168,43 @@ public class Panel1 extends JPanel implements ActionListener{
             
             @Override
             public void mouseClicked(MouseEvent e) {
-                x_M = e.getX();
-                y_M = e.getY();
+                
                
                 
-                if(e.getButton()==MouseEvent.BUTTON1){
-                    System.out.println(e.getSource());
+                if(e.getButton()==MouseEvent.BUTTON3){
+                    int inodos = 0;
+                    for (Nodo_draw nodo : vectorNodos){
+                        if (new Rectangle (nodo.getCompuerta().getX() + 68, nodo.getCompuerta().getY() + 15, nodo.getCompuerta().getWidth(), nodo.Compuerta.getHeight()).contains(e.getPoint())){
+                           in_nodor = inodos;
+                           
+                           break;
+                        }
+                        inodos++;
+                    }
+                   
                         
                 }
                 
             }
-
+                // Toma el nodo que estamos seleccionando para poder moverlo
             @Override
             public void mousePressed(MouseEvent e) {
                 
                 if (e.getButton() == MouseEvent.BUTTON1){
                     int inodo = 0;
                     for (Nodo_draw nodo : vectorNodos){
-                        if (new Rectangle (nodo.getCompuerta().getX() - Nodo_draw.ancho/2, nodo.getCompuerta().getY() -  Nodo_draw.largo/2, nodo.getCompuerta().getWidth(), nodo.Compuerta.getHeight()).contains(e.getPoint())){
+                        if (new Rectangle (nodo.getCompuerta().getX() + 68, nodo.getCompuerta().getY() + 15, nodo.getCompuerta().getWidth(), nodo.Compuerta.getHeight()).contains(e.getPoint())){
                            Nodo_move = nodo; 
                            in_nodo = inodo;
+                           //System.out.println(in_nodo);
                            break;
                         }
                         inodo++;
                     }
                 }
                 
+                
+                // Evento para dejar de selecionar una compuerta 
                 
                 if(e.getButton()==MouseEvent.BUTTON1 && e.getSource() != jPanel1 && e.getSource() != jPanel2 && e.getSource() != jPanel3){
                     TempSource = Source;
@@ -179,7 +213,7 @@ public class Panel1 extends JPanel implements ActionListener{
                    
                     
                     
-                    
+                // Evento del mouse para mostrar la imagen de la compuerta seleccionada en el programa.
                     }
                 if (e.getButton()== MouseEvent.BUTTON1 && e.getSource() == TempSource){
                     elemento = null;
@@ -224,9 +258,16 @@ public class Panel1 extends JPanel implements ActionListener{
                     seleccionado.setIcon(new ImageIcon(elemento));
                 }
                 
+                //Eventos para mostrar las compuertas en la ventana y almacenarlas en la listas
+                
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == AND && e.getSource() == jPanel2){
-                        
-                        And.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "AND";
+                        lc.insertar("AND", "AND");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        System.out.println(NodoAsociado.getNombre());
+                        And.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();
                         
                         
@@ -236,44 +277,81 @@ public class Panel1 extends JPanel implements ActionListener{
                     
                     
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == NAND && e.getSource() == jPanel2){
-                    
-                        Nand.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "NAND";
+                        lc.insertar("NAND", "NAND");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Nand.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();
-                      
-                    
-                    
                     
                     }
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == NOR && e.getSource() == jPanel2){
-                        Nor.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "NOR";
+                        lc.insertar("NOR", "NOR");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Nor.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();     
                     }
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == NOT && e.getSource() == jPanel2){
-                        Not.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "NOT";
+                        lc.insertar("NOT", "NOT");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Not.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();     
                     }
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == OR && e.getSource() == jPanel2){
-                        Or.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "OR";
+                        lc.insertar("OR", "OR");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        System.out.println(Nombre_comp);
+                        Or.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();     
                     }
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == XNOR && e.getSource() == jPanel2){
-                        Xnor.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "XNOR";
+                        lc.insertar("XNOR", "XNOR");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Xnor.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();     
                     }
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == XOR && e.getSource() == jPanel2){
-                        Xor.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "XOR";
+                        lc.insertar("XOR", "XOR");
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Xor.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        indice++;
                         jPanel2.updateUI();     
-                        jPanel2.repaint();
+                        
                     }
                 
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == Entrada0 && e.getSource() == jPanel2){
-                        Entrada_0.crear_comp(e.getX(), e.getY(), jPanel2);
+                        Nombre_comp = "DATO";
+                        lc.insertasDato(Nombre_comp, 0);
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Entrada_0.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
                         jPanel2.updateUI();     
+                        indice++;
                         Circuitos.Num_entradas += 1;
                     }
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == Entrada1 && e.getSource() == jPanel2){
-                        Entrada_1.crear_comp(e.getX(), e.getY(), jPanel2);
-                        jPanel2.updateUI();     
+                        Nombre_comp = "DATO";
+                        lc.insertasDato(Nombre_comp, 1);
+                        Nodo NodoAsociado = new Nodo();
+                        NodoAsociado = lc.buscar(indice);
+                        Entrada_1.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
+                        jPanel2.updateUI();
+                        indice++;
                         Circuitos.Num_entradas += 1;
                         
                     }
@@ -281,13 +359,13 @@ public class Panel1 extends JPanel implements ActionListener{
                 }
                 
                 
-        
+        // Evento que inicia las variables para mover las compuertas cuando se suelte un boton del mouse 
 
             @Override
             public void mouseReleased(MouseEvent e) {
                Nodo_move = null;
                in_nodo = -1;
-                
+               in_nodor = -1;
                 
             }
 
@@ -304,7 +382,7 @@ public class Panel1 extends JPanel implements ActionListener{
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
-        //Eventos para copiar la imagen de cada compuerta
+       
         
     
         
@@ -334,6 +412,29 @@ public class Panel1 extends JPanel implements ActionListener{
             
         } 
     
+      public static int CalculaResultado(Nodo end){
+        if (end.anterior1.getTipo() != "DATO"){
+            end.anterior1.setDato(CalculaResultado(end.anterior1));
+        }
+        /*
+        if (end.anterior2.getTipo() != "DATO" && end.anterior2 != null && end.getTipo() != "NOT"){
+            end.anterior2.setDato(CalculaResultado(end.anterior2));
+        }
+                */
+        if (end.getTipo() == "NOT"){
+            
+            Dato = Calculos((String)end.getTipo(), (int)end.anterior1.getDato(), 0);
+            System.out.println(Dato);
+            
+        }
+        else if(end.getTipo() != "DATO" && end.getTipo() != "NOT"){
+            Dato = Calculos((String)end.getTipo(), (int)end.anterior1.getDato(), (int)end.anterior2.getDato());
+        }
+        return Dato;
+    
+}
+    
+    
     
 
     @Override
@@ -341,17 +442,8 @@ public class Panel1 extends JPanel implements ActionListener{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    /*
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        //String Texto_c = "COMPUERTAS";
-        Font fuente = new Font ("TimesRoman", Font.BOLD, 24);
-        g.drawString("Compuertas", 70, 40);
-        
-    }
-
-  */
+  
+   
 }
 
     

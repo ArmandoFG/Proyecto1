@@ -5,19 +5,26 @@ package circuitos;
 
 
 
-import static circuitos.Panel1.AND;
+
+import static circuitos.Nodo_draw.cont_i1;
 import static circuitos.Panel1.Nodo_move;
 import static circuitos.Panel1.in_nodo;
+import static circuitos.Panel1.in_nodor;
+
 import static circuitos.Panel1.ml;
 import static circuitos.Panel1.vectorNodos;
 import static circuitos.Ventana.jPanel2;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.Random;
 import java.util.Vector;
 import javax.swing.*;
 
@@ -26,40 +33,42 @@ import javax.swing.*;
 
 /**
  *
- * @author arman
+ * @author Armando
  */
 public class Panel2 extends JPanel  { 
     
     
     //Variables a usar para arrastrar y poner cada compuerta
-
+    
     MouseListener Mouse;
     public static MouseMotionListener mover;
     
-    Nodo aux;
-    Nodo aux_temp;
     
-    Image imagenAux;
-    Graphics gAux;
-    Dimension dimAux;
-    Dimension dimPanel;
+    
+   
+    
+ 
     
     Graphics line;
+    Point p1, p2;
     
-    public static int x_mouse, y_mouse, current_x, current_y;
-   
+    static Nodo_draw Nodoline;
+    static int inodo;
     
     public static MouseListener Mo;
     
  
     public static Vector<Nodo_lineas> vectorlineas;
+    
+    // Variable a usar para almacenar el anterior de una compuerta
+    Nodo temporal;
 
     
     public Panel2() {
        
+       
     //________________________________________________________________________________________________________________________________________________________________________________  
-        // leasignamos color, bordes y el tamaño real que tendra el panel
-        this.setDoubleBuffered(true);
+        
         
        
        
@@ -67,28 +76,76 @@ public class Panel2 extends JPanel  {
         this.addMouseListener(ml);
         vectorlineas = new Vector<>();
             
-        dimPanel = this.getSize(); 
         
+        // leasignamos color, bordes y el tamaño real que tendra el panel
         
         this.setBackground(new java.awt.Color(113, 176, 140));
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         this.setPreferredSize(new java.awt.Dimension(800, 900));
-        //Draw_line(this);
+      
     //    ___________________________________________________________________________________________________________________________________     
         
         Mo = new MouseListener(){
 
             @Override
             public void mouseClicked(MouseEvent e) {
-            }
+                
+                if(e.getButton() == MouseEvent.BUTTON3){
+                   
+                        for (Nodo_draw nodo : vectorNodos){ 
+                            
+                            if (new Rectangle (nodo.getCompuerta().getX() + 68, nodo.getCompuerta().getY() + 15, nodo.getCompuerta().getWidth(), nodo.Compuerta.getHeight()).contains(e.getPoint())){
+                               
+                                
+                                if (p1 == null){
+                                    
+                                        temporal = nodo.Nodoasociado;
+                                       
+                                        p1 = new Point(nodo.getCompuerta().getX() + 78, nodo.getCompuerta().getY() + 50);
+                                     
+                                        
+                     } else{
+                           
+                            if(nodo.Nodoasociado.anterior1 == null && nodo.Nodoasociado.getTipo() != "DATO"){
+                                    
+                                    nodo.Nodoasociado.setAnterior1(temporal);
+                                    Random num = new Random();                      
+                                    Color azar = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255));
+                                    p2 = new Point(nodo.getCompuerta().getX() + 18, nodo.getCompuerta().getY() + 44);
+                                    vectorlineas.add(new Nodo_lineas(p1.x,p1.y,p2.x,p2.y, azar));
+                                  
+                                    
+                                    
+                               }else if(nodo.Nodoasociado.anterior2 == null && nodo.Nodoasociado.getTipo() != "DATO" && nodo.Nodoasociado.getTipo() != "NOT"){
+                                   nodo.Nodoasociado.setAnterior2(temporal);
+                                    Random num = new Random();                      
+                                    Color azar = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255));
+                                    p2 = new Point(nodo.getCompuerta().getX() + 18, nodo.getCompuerta().getY() + 60);
+                                    vectorlineas.add(new Nodo_lineas(p1.x,p1.y,p2.x,p2.y,azar));
+                                    
+                                 
+                                    
+                                   } 
+                            repaint();
+                            p1 = null;
+                            p2 = null;
+                            
+                                
+                                }       
+                
+                                
+                            }
+                            
+                    }
+                        
+                        
+            }}
 
             @Override
             public void mousePressed(MouseEvent e ) {
                 
                 if(e.getButton() == MouseEvent.BUTTON3){
-                    
-                    x_mouse = e.getX();
-                    y_mouse = e.getY();
+                   
                     
                     
                 }
@@ -96,14 +153,7 @@ public class Panel2 extends JPanel  {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if(e.getButton() == MouseEvent.BUTTON3){
-                    vectorlineas.add(new Nodo_lineas(x_mouse, y_mouse, current_x, current_y));
-                    repaint();
-                   
-                        
-                        
-
-            }
+               
                 }
 
             @Override
@@ -117,6 +167,8 @@ public class Panel2 extends JPanel  {
             }
             
         };
+        
+        // El panel esta pendiente a los eventos del mouse
         this.addMouseListener(Mo);
         
         mover = new MouseMotionListener(){
@@ -126,18 +178,32 @@ public class Panel2 extends JPanel  {
             public void mouseDragged(MouseEvent e) {
                 if (e.getModifiersEx() == MouseEvent.BUTTON1_DOWN_MASK){
                     
-                    if(Nodo_move != null){
-                        Nodo_move.getCompuerta().setLocation(e.getX(), e.getY());
-                        vectorNodos.set(in_nodo, new Nodo_draw(Nodo_move.Compuerta));
-                    }
+                    //Mueve las compuertas tomando los puntos (x,y) del mouse
                     
+                    if(Nodo_move != null){
+                        Nodo_move.getCompuerta().setLocation(e.getX() - 87, e.getY() - 48);
+                        vectorNodos.set(in_nodo, new Nodo_draw(Nodo_move.Compuerta, Nodo_move.getNodoAsociado(), Nodo_move.getNombre(), Nodo_move.getcont_I1(), Nodo_move.getcont_I2(), Nodo_move.getcont_OUT()));
+                        int indicelinea = 0;
+                        
+                        for (Nodo_lineas line : vectorlineas){
+                            if (new Rectangle(line.getX1() - Nodo_draw.ancho, line.getY1() - Nodo_draw.largo/2, Nodo_draw.ancho + 15, Nodo_draw.largo + 15).contains(e.getPoint())){
+                                vectorlineas.set(indicelinea, new Nodo_lineas(e.getX(),e.getY(),line.getX2(),line.getY2(), line.getColor()));
+                }           else if(new Rectangle(line.getX2() - Nodo_draw.ancho/4, line.getY2() - Nodo_draw.largo/2, Nodo_draw.ancho + 15, Nodo_draw.largo + 15).contains(e.getPoint())){
+                                                    vectorlineas.set(indicelinea, new Nodo_lineas(line.getX1(),line.getY1(),e.getX() - 69,e.getY() - 4, line.getColor()));
+
+                                
+                        }
+                            indicelinea++;
+                        }
+                        
+                    }repaint();                    
                  
                         
                     }
                 if (e.getModifiersEx() == MouseEvent.BUTTON3_DOWN_MASK){
                     
-                    current_x = e.getX();
-                    current_y = e.getY();
+                  
+      
                    
                 }
                             
@@ -153,6 +219,8 @@ public class Panel2 extends JPanel  {
         
             
         }
+    //Metodo para pintar lineas de conexion que hereda de su padre
+    
     @Override
 public void paintComponent(Graphics g)
 {
@@ -160,14 +228,24 @@ public void paintComponent(Graphics g)
     for (Nodo_lineas linea : vectorlineas){
         linea.pintar(g);
     }
-    g.drawLine(x_mouse, y_mouse, current_x, current_y);
-    repaint();
-   
     
-}
+    for (Nodo_draw nodo : vectorNodos){
+        System.out.println(nodo.getNombre());
+        if (nodo.getNombre() == "DATO"){
+            nodo.pintarE(g, nodo.Compuerta.getX() + 80, nodo.Compuerta.getY() + 35);
+        }else if(nodo.getNombre() == "NOT") {
+            nodo.pintarNot(g, nodo.Compuerta.getX() + 10, nodo.Compuerta.getY() + 34, nodo.Compuerta.getX() + 80, nodo.Compuerta.getY() + 35);
+        
+    }else{
+        nodo.pintar(g, nodo.Compuerta.getX() + 10, nodo.Compuerta.getY() + 30, nodo.Compuerta.getX() + 10, nodo.Compuerta.getY() + 80, nodo.Compuerta.getX() + 80, nodo.Compuerta.getY() + 35);
+      
+    }
+   
+   
+} 
 
     
-    
+} 
     
   
     
