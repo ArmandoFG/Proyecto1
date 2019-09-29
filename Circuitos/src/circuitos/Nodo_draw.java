@@ -12,7 +12,8 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author Armando
+ * @author Armando Fallas
+ * @version 1.2
  */
 public class Nodo_draw {
     //Variables donde se almacena la imagen de las compuertas a usar en el circuito
@@ -27,6 +28,7 @@ public class Nodo_draw {
     public Nodo Nodoasociado;
     String Nombre;
     
+    // Variables de los cob¿ntadores de entradas y salidas de las compuertas
     public static int cont_i1;
     int cont_I1;
     public static int cont_i2;
@@ -36,9 +38,19 @@ public class Nodo_draw {
     
    // Contructor de la compuerta
     
+    /**
+     * 
+     * @param c       Imagen de la compuerta
+     * @param NodoAsociado      Nodo con el cual se asocia en la lista enlazada
+     * @param nombre            Nombre del nodo
+     * @param contador1         Contador que almacena el numero de entradas
+     * @param contador2         Contador que almacena el numero de entradas
+     * @param contador3         Contador que almacena el numero de salidas
+     */
+    
     public Nodo_draw(JLabel c, Nodo NodoAsociado, String nombre, int contador1, int contador2, int contador3){
        
-        Compuerta = c;
+        Compuerta = c;      
         largo = c.getHeight();
         ancho = c.getWidth();
         Nodoasociado = NodoAsociado;
@@ -48,6 +60,12 @@ public class Nodo_draw {
         cont_OUT = contador3;
 }
     
+    /**
+     * 
+     * @param g     Grafico donde se pinta
+     * @param o1    Coordenadas donde se pinta en x
+     * @param o2    Coordenadas donde se pinta en y
+     */
     public void pintarE(Graphics g, int o1, int o2)
 {
     g.setColor(Color.BLACK);
@@ -59,7 +77,16 @@ public class Nodo_draw {
     
 }
     
-  
+  /**
+   * 
+   * @param g       Grafico donde se pinta
+   * @param x1      Coordenadas donde se dibuja el texto de la entrada 1
+   * @param y1      Coordenadas donde se dibuja el texto de la entrada 1
+   * @param x2      Coordenadas donde se dibuja el texto de la entrada 2
+   * @param y2      Coordenadas donde se dibuja el texto de la entrada 2
+   * @param o1      Coordenadas donde se dibuja el texto de la salida
+   * @param o2      Coordenadas donde se dibuja el texto de la salida
+   */
     
     public void pintar(Graphics g, int x1, int y1, int x2, int y2, int o1, int o2)
 {
@@ -70,9 +97,18 @@ public class Nodo_draw {
     
     
     
+    
 
     
 }
+    /**
+     * 
+     * @param g     Grafico donde se pinta
+     * @param x1    Coordenadas donde se dibuja el texto de la entrada en x
+     * @param y1    Coordenadas donde se dibuja el texto de la entrada en y
+     * @param o1    Coordenadas donde se dibuja el texto de la salida en x
+     * @param o2    Coordenadas donde se dibuja el texto de la salida en y
+     */
     public void pintarNot(Graphics g, int x1, int y1, int o1, int o2)
 {   g.setColor(Color.BLACK);
     g.drawString("I" + Integer.toString(cont_I1), x1, y1);

@@ -13,7 +13,8 @@ import javax.swing.*;
 
 /**
  *
- * @author Armando
+ * @author Armando Fallas
+ * @version 1.2
  */
 public class Circuitos {
     

@@ -7,7 +7,8 @@ package Compuertas;
 
 /**
  *
- * @author arman
+ * @author Armando Fallas
+ * @version 1.2
  */
 public interface OpNot {
     int operacion (int entrada);

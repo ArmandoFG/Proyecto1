@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Compuertas;
 
 
-import static circuitos.Circuitos.lc;
+
 import circuitos.Nodo;
 import circuitos.Nodo_draw;
 import static circuitos.Nodo_draw.cont_i1;
@@ -52,7 +48,7 @@ public class Entrada_0 extends JLabel{
         panel.add(Entrada0);    // Se agrega al panel
         Entrada0.setName("Entrada0" + cont_E0);     // Se le asigna el nombre
         vectorNodos.add(new Nodo_draw(Entrada0, NodoAs, Nombre, cont_i1, cont_i2, cont_out));   // Se agrega al vector
-        cont_E0 += 1; // Se increme cantidad de or
+        cont_E0 += 1; // Se increme cantidad de entradas0
         cont_out++;
     
 }

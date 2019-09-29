@@ -9,15 +9,18 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author arman
+ * @author Armando Fallas
+ * @version 1.2
  */
 public class Nodo {   
-    private Object dato;
-    private Object nombre;
-    private Object tipo;
-    Nodo siguiente;
+    private Object dato;        // Dato de la compuerta 0 o 1
+    private Object nombre;      // Nombre de compuerta
+    private Object tipo;        // Tipo de compuerta
+    Nodo siguiente;             
     Nodo anterior1;
     Nodo anterior2;
+    
+    // Contadores de cada compuerta
     static int ContAnds = 0;
     static int ContNands  = 0;
     static int ContOrs  = 0;

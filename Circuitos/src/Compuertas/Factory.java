@@ -11,7 +11,10 @@ package Compuertas;
  */
 public class Factory extends Comp_Factory {
 
-   
+   /**
+    * Dependiendo el tipo de compuerta retorna la compuerta a ingresar en la lista enlazada
+    * 
+    */
 
     @Override
     public OpAnd getAND(String tipoAnd) {
@@ -41,7 +44,7 @@ public class Factory extends Comp_Factory {
         }
         if(tipoNor.equalsIgnoreCase("NOR")){
             return new Nor();
-    }
+   }
         return null;
     }
 

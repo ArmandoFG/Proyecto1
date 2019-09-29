@@ -77,7 +77,7 @@ public class Panel2 extends JPanel  {
         vectorlineas = new Vector<>();
             
         
-        // leasignamos color, bordes y el tamaño real que tendra el panel
+        // le asignamos color, bordes y el tamaño real que tendra el panel
         
         this.setBackground(new java.awt.Color(113, 176, 140));
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
@@ -89,9 +89,10 @@ public class Panel2 extends JPanel  {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                //Al presionar click derecho se dibujan las lineas
                 
                 if(e.getButton() == MouseEvent.BUTTON3){
-                   
+                   //Recorre los nodos y con rectangulo se toma cual nodo se presiono para dibujar la linea
                         for (Nodo_draw nodo : vectorNodos){ 
                             
                             if (new Rectangle (nodo.getCompuerta().getX() + 68, nodo.getCompuerta().getY() + 15, nodo.getCompuerta().getWidth(), nodo.Compuerta.getHeight()).contains(e.getPoint())){
@@ -99,7 +100,7 @@ public class Panel2 extends JPanel  {
                                 
                                 if (p1 == null){
                                     
-                                        temporal = nodo.Nodoasociado;
+                                        temporal = nodo.Nodoasociado;   //Almacena el nodo que sera el nodo anterior de la otra compuerta donde se dibujara la linea
                                        
                                         p1 = new Point(nodo.getCompuerta().getX() + 78, nodo.getCompuerta().getY() + 50);
                                      
@@ -108,24 +109,25 @@ public class Panel2 extends JPanel  {
                            
                             if(nodo.Nodoasociado.anterior1 == null && nodo.Nodoasociado.getTipo() != "DATO"){
                                     
-                                    nodo.Nodoasociado.setAnterior1(temporal);
-                                    Random num = new Random();                      
-                                    Color azar = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255));
+                                    nodo.Nodoasociado.setAnterior1(temporal); // Se le asigna al nodo el nodo anterior
+                                    Random num = new Random();                            
+                                    Color azar = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255)); // Crea colores aleatorios para las lineas
                                     p2 = new Point(nodo.getCompuerta().getX() + 18, nodo.getCompuerta().getY() + 44);
-                                    vectorlineas.add(new Nodo_lineas(p1.x,p1.y,p2.x,p2.y, azar));
+                                    vectorlineas.add(new Nodo_lineas(p1.x,p1.y,p2.x,p2.y, azar));       //Se agrega la linea en el vector
                                   
                                     
                                     
                                }else if(nodo.Nodoasociado.anterior2 == null && nodo.Nodoasociado.getTipo() != "DATO" && nodo.Nodoasociado.getTipo() != "NOT"){
-                                   nodo.Nodoasociado.setAnterior2(temporal);
+                                   nodo.Nodoasociado.setAnterior2(temporal);    // Se le asigna al nodo el nodo anterior
                                     Random num = new Random();                      
-                                    Color azar = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255));
+                                    Color azar = new Color(num.nextInt(255),num.nextInt(255),num.nextInt(255)); // Crea colores aleatorios para las lineas
                                     p2 = new Point(nodo.getCompuerta().getX() + 18, nodo.getCompuerta().getY() + 60);
-                                    vectorlineas.add(new Nodo_lineas(p1.x,p1.y,p2.x,p2.y,azar));
+                                    vectorlineas.add(new Nodo_lineas(p1.x,p1.y,p2.x,p2.y,azar));    //Se agrega la linea en el vector
                                     
                                  
                                     
                                    } 
+                            // Refresca el panel y inicializa los puntos del mouse
                             repaint();
                             p1 = null;
                             p2 = null;
@@ -184,7 +186,7 @@ public class Panel2 extends JPanel  {
                         Nodo_move.getCompuerta().setLocation(e.getX() - 87, e.getY() - 48);
                         vectorNodos.set(in_nodo, new Nodo_draw(Nodo_move.Compuerta, Nodo_move.getNodoAsociado(), Nodo_move.getNombre(), Nodo_move.getcont_I1(), Nodo_move.getcont_I2(), Nodo_move.getcont_OUT()));
                         int indicelinea = 0;
-                        
+                        // Mueve las lineas conforme se mueve la compuerta tomando el rectangulo de cada lina recorriendp el vector de lineas
                         for (Nodo_lineas line : vectorlineas){
                             if (new Rectangle(line.getX1() - Nodo_draw.ancho, line.getY1() - Nodo_draw.largo/2, Nodo_draw.ancho + 15, Nodo_draw.largo + 15).contains(e.getPoint())){
                                 vectorlineas.set(indicelinea, new Nodo_lineas(e.getX(),e.getY(),line.getX2(),line.getY2(), line.getColor()));
@@ -229,8 +231,9 @@ public void paintComponent(Graphics g)
         linea.pintar(g);
     }
     
+    // Recorre los nodos del vector y dibuja los textos de entradas y salida
     for (Nodo_draw nodo : vectorNodos){
-        System.out.println(nodo.getNombre());
+        
         if (nodo.getNombre() == "DATO"){
             nodo.pintarE(g, nodo.Compuerta.getX() + 80, nodo.Compuerta.getY() + 35);
         }else if(nodo.getNombre() == "NOT") {

@@ -6,6 +6,7 @@
 package circuitos;
 
 import Compuertas.Comp_Factory;
+import Compuertas.Factory;
 import Compuertas.FactoryCrear;
 import Compuertas.OpAnd;
 import Compuertas.OpNand;
@@ -26,26 +27,29 @@ import static circuitos.Nodo.ContXors;
 
 /**
  *
- * @author arman
+ * @author Armandi Fallas
+ * @version 1.2
  */
 public class Lista_Compuertas {
     
-    public Nodo cabeza;
-    public int size;
+    public Nodo cabeza;     //Cabeza de la lista
+    public int size;        // Tamaño de la lista
     
     public Lista_Compuertas(){
         this.cabeza = null;
         this.size = 0;
     
 }
+    
     public boolean Empty(){
-        return this.cabeza == null;
+        return this.cabeza == null;     // Metodo para conocer si la lista está vacia
     }
     
     public int size(){
-        return this.size;
+        return this.size;       // Retorna tamaño de la lista
     }
     
+    // Metodo que retorna el ultimo nodo de la lista
     public Nodo ultimo(){
         Nodo ultimo = this.cabeza;
         while ( ultimo.getSiguiente() != null ){
@@ -53,6 +57,13 @@ public class Lista_Compuertas {
         }
         return ultimo;
     }
+    
+    /**
+     * 
+     * @param indice 
+     * @return 
+     */
+    // Busca un nodo dentro de la lista
     
     public Nodo buscar (int indice){
         int index = 0;
@@ -64,10 +75,22 @@ public class Lista_Compuertas {
         return buscar;
         
     }
-    
+    /**
+     * 
+     * @param Comp      Nombre Compuerta
+     * @param tipo      Tipo compouerta
+     */
     public void insertar(String Comp, String tipo){
         Nodo Compuerta = new Nodo();
         
+        /**
+         * Descripcion:
+         * 
+         * Si la lista está vacia asigna el nodo como la cabeza, por medio de un switch identifica el tipo de
+         * compuerta le asigna un nombre y le asigna el tipo
+         * 
+         * Si la lista no está vacia recorre la lista hasta llegar al ultimo nodo y lo agrega como el siguiente
+         */
         if (this.Empty()){
             this.cabeza = Compuerta;
             switch(tipo){
@@ -156,10 +179,25 @@ public class Lista_Compuertas {
                     break;
             }
         }
-        this.size++;
+        this.size++;        //Se incrementa el tamaño de la lista
     }
     
+    /**
+     * 
+     * @param nombre        
+     * @param dato      Dato 0 o 1
+     */
+    
+    
     public void insertasDato (String nombre, int dato){
+        /**
+         * Descripcion:
+         * 
+         * Se ingresa el tipo de dato que debera tener cada comperta como entrada
+         * 
+         */
+        
+        
         Nodo Dato = new Nodo();
         
         if (this.Empty()){
@@ -183,8 +221,17 @@ public class Lista_Compuertas {
         }
         this.size++;
     }
-    
+    /**
+     * 
+     * @param Compuerta Nombre
+     * @param entrada1  0 o 1
+     * @param entrada2  0 o 1
+     * @return 
+     */
     public static int Calculos(String Compuerta, int entrada1, int entrada2){
+        /**
+         * Calcula los datos de cada compuerta llama cada operacion usando la clase de fabrica
+         */
         int resultado;
         resultado = 0;
         
@@ -230,7 +277,7 @@ public class Lista_Compuertas {
             
         }
         
-    return resultado;
+    return resultado;       // Retorna el resultado de cada compuerta
 }
     
     

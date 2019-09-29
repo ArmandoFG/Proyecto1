@@ -105,12 +105,7 @@ public class And extends JLabel implements OpAnd{
         
     
     
-    /**
-     * 
-     * @param g de tipo Graphics
-     * 
-     * Metodo para pintar los nombres de la entrada en cada compuerta
-     */
+   
    
     
     

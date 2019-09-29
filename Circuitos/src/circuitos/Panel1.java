@@ -87,7 +87,7 @@ public class Panel1 extends JPanel implements ActionListener{
         
         
         
-        vectorNodos = new Vector<>();
+        vectorNodos = new Vector<>();   // Vector donde se almacena las imagenes de las compuertas
         Nombre_comp = null;
 
         //Instancias de las compuertas
@@ -196,7 +196,7 @@ public class Panel1 extends JPanel implements ActionListener{
                         if (new Rectangle (nodo.getCompuerta().getX() + 68, nodo.getCompuerta().getY() + 15, nodo.getCompuerta().getWidth(), nodo.Compuerta.getHeight()).contains(e.getPoint())){
                            Nodo_move = nodo; 
                            in_nodo = inodo;
-                           //System.out.println(in_nodo);
+                          
                            break;
                         }
                         inodo++;
@@ -258,17 +258,16 @@ public class Panel1 extends JPanel implements ActionListener{
                     seleccionado.setIcon(new ImageIcon(elemento));
                 }
                 
-                //Eventos para mostrar las compuertas en la ventana y almacenarlas en la listas
+                //Eventos para mostrar las compuertas en la ventana y almacenarlas en la lista y en el vector
                 
                 if(e.getButton()==MouseEvent.BUTTON1 && Source == AND && e.getSource() == jPanel2){
                         Nombre_comp = "AND";
                         lc.insertar("AND", "AND");
                         Nodo NodoAsociado = new Nodo();
                         NodoAsociado = lc.buscar(indice);
-                        System.out.println(NodoAsociado.getNombre());
                         And.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
                         indice++;
-                        jPanel2.updateUI();
+                        jPanel2.updateUI(); // Actualiza la ventana
                         
                         
                 }
@@ -412,15 +411,23 @@ public class Panel1 extends JPanel implements ActionListener{
             
         } 
     
+       /**
+        * 
+        * @param end // Almacena los Nodos de la lista hasta llegar al final
+        * @return 
+        */ 
+    
+        
       public static int CalculaResultado(Nodo end){
+          /**
+           * Este metodo es el que calcula todos los resultados del circuito 
+           * cada nodo se recorre hasta al final y comprueba las entradas de cada compuerta
+           * realizando su correspondiente operacion
+           */
         if (end.anterior1.getTipo() != "DATO"){
             end.anterior1.setDato(CalculaResultado(end.anterior1));
         }
-        /*
-        if (end.anterior2.getTipo() != "DATO" && end.anterior2 != null && end.getTipo() != "NOT"){
-            end.anterior2.setDato(CalculaResultado(end.anterior2));
-        }
-                */
+        
         if (end.getTipo() == "NOT"){
             
             Dato = Calculos((String)end.getTipo(), (int)end.anterior1.getDato(), 0);

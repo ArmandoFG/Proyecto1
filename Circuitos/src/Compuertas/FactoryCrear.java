@@ -7,11 +7,11 @@ package Compuertas;
 
 /**
  *
- * @author arman
+ * @author Armando Fallas
  */
 public class FactoryCrear{
-    public static Comp_Factory getFactory(String choice){
-	      if(choice.equalsIgnoreCase("OR")){
+    public static Factory getFactory(String choice){
+	      if(choice.equalsIgnoreCase("OR")){                
 	         return new Factory();
 	      }else if(choice.equalsIgnoreCase("NOT")){
 	         return new Factory();

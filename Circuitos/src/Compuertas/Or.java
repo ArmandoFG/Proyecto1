@@ -26,12 +26,18 @@ public class Or extends JLabel implements OpOr{
     static Graphics string;
     
     public Or(){
-        
+             //Posicion e imagen donde estara la compuerta
+
         this.setBounds(1, 130, 110, 100);
         this.setIcon(new ImageIcon("C:\\Users\\arman\\OneDrive\\Escritorio\\Proyecto1\\Circuitos\\src\\Imagenes\\Or.png"));
         
     }
-    
+    /**
+     * 
+     * @param entrada1  De tipo int almacena un 1 o 0
+     * @param entrada2  De tipo int almacena un 1 o 0
+     * @return De tipo int retorna resultado
+     */
     @Override
     public int operacion(int entrada1, int entrada2){
         if(entrada1 == 0 && entrada2 == 0){
@@ -47,6 +53,14 @@ public class Or extends JLabel implements OpOr{
         
         
     }
+    /**
+     * 
+     * @param x  Posicion x del jlabel de la compuerta tipo int
+     * @param y  Posicion y del jlabel de la compuerta tipo int
+     * @param panel Donde se mostrara la compuerto tipo JPanel
+     * @param Nodoas Nodo asociado de la lista enlazada de tipo Nodo
+     * @param Nombre Nombre del nodo de tipo String
+     */
     
     public static void crear_comp (int x, int y,JPanel panel, Nodo Nodoas, String Nombre){
         Nodo NodoAs = Nodoas;

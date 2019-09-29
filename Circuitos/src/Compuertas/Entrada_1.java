@@ -56,6 +56,6 @@ public class Entrada_1 extends JLabel{
     
 }
      public int dato(){
-         return 1;  // Se increme cantidad de or
+         return 1;  // Se retorna dato de la entrada
      }
 }

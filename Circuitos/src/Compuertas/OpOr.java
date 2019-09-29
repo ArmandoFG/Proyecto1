@@ -7,7 +7,8 @@ package Compuertas;
 
 /**
  *
- * @author arman
+ * @author Armando Fallas
+ * @version 1.2
  */
 public interface OpOr {
     int operacion (int entrada1, int entrada2);
