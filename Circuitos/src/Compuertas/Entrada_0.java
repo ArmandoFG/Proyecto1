@@ -9,6 +9,7 @@ import static circuitos.Nodo_draw.cont_i1;
 import static circuitos.Nodo_draw.cont_i2;
 import static circuitos.Nodo_draw.cont_out;
 import static circuitos.Panel1.vectorNodos;
+import static circuitos.Panel3.MiTabla;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -50,7 +51,9 @@ public class Entrada_0 extends JLabel{
         vectorNodos.add(new Nodo_draw(Entrada0, NodoAs, Nombre, cont_i1, cont_i2, cont_out));   // Se agrega al vector
         cont_E0 += 1; // Se increme cantidad de entradas0
         cont_out++;
-    
+        
+        
+        
 }
     
     public int dato(){

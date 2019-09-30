@@ -6,6 +6,7 @@
 package circuitos;
 
 
+import static circuitos.Panel3.MiTabla;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JLabel;
@@ -58,6 +59,7 @@ public class Nodo_draw {
         cont_I1 = contador1;
         cont_I2 = contador2;
         cont_OUT = contador3;
+        
 }
     
     /**
@@ -70,6 +72,9 @@ public class Nodo_draw {
 {
     g.setColor(Color.BLACK);
     g.drawString("O" + Integer.toString(cont_OUT), o1, o2);
+    
+        
+    
     
     
     
@@ -98,6 +103,7 @@ public class Nodo_draw {
     
     
     
+    
 
     
 }
@@ -114,6 +120,7 @@ public class Nodo_draw {
     g.drawString("I" + Integer.toString(cont_I1), x1, y1);
     g.drawString("O" + Integer.toString(cont_OUT), o1, o2);
     
+        
     
     
 

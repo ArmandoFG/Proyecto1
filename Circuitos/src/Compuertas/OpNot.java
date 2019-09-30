@@ -10,6 +10,7 @@ package Compuertas;
  * @author Armando Fallas
  * @version 1.2
  */
+// Operacion al realizar compuerta Not
 public interface OpNot {
     int operacion (int entrada);
     

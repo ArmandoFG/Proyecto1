@@ -1,21 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Compuertas;
 
 /**
  *
- * @author arman
+ * @author Armando Fallas
+ * @version 1.2
  */
 public class Factory extends Comp_Factory {
 
    /**
-    * Dependiendo el tipo de compuerta retorna la compuerta a ingresar en la lista enlazada
+    * Dependiendo el tipo de compuerta retorna y crea la compuerta a ingresar en la lista enlazada
     * 
     */
 
+    /**
+     * 
+     * @param tipoAnd   Tipo de compuerta
+     * @return 
+     */
     @Override
     public OpAnd getAND(String tipoAnd) {
         if(tipoAnd == null){

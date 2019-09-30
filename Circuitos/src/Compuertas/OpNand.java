@@ -9,6 +9,7 @@ package Compuertas;
  *
  * @author arman
  */
+// Operacion al realizar compuerta Nand
 public interface OpNand {
     int operacion (int entrada1, int entrada2);
     

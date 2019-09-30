@@ -7,8 +7,11 @@ package Compuertas;
 
 /**
  *
- * @author arman
+ * @author Armando Fallas
+ * @version 1.2
  */
+
+// Operacion al realizar compuerta And
 public interface OpAnd {
     int operacion (int entrada1, int entrada2);
     

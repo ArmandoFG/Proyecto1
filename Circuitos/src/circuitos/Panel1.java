@@ -12,6 +12,10 @@ import Compuertas.Xnor;
 import Compuertas.Xor;
 import static circuitos.Circuitos.lc;
 import static circuitos.Lista_Compuertas.Calculos;
+import static circuitos.Panel3.MiTabla;
+import static circuitos.Panel3.contador_tabla2;
+import static circuitos.Panel3.line2;
+import static circuitos.Panel3.linea;
 
 
 import static circuitos.Ventana.jPanel1;
@@ -47,6 +51,8 @@ public class Panel1 extends JPanel implements ActionListener{
     Xnor XNOR;
     Entrada_1 Entrada1;
     Entrada_0 Entrada0;
+    
+    static int contador_tabla;
     
     
     // Variables para eventos del mouse al seleccionar una compuerta de la paleta
@@ -267,6 +273,7 @@ public class Panel1 extends JPanel implements ActionListener{
                         NodoAsociado = lc.buscar(indice);
                         And.crear_comp(e.getX(), e.getY(), jPanel2, NodoAsociado, Nombre_comp);
                         indice++;
+                        
                         jPanel2.updateUI(); // Actualiza la ventana
                         
                         
@@ -432,14 +439,29 @@ public class Panel1 extends JPanel implements ActionListener{
             
             Dato = Calculos((String)end.getTipo(), (int)end.anterior1.getDato(), 0);
             System.out.println(Dato);
-            
+            linea[contador_tabla] = end.anterior1.getDato();
+            contador_tabla++;
         }
         else if(end.getTipo() != "DATO" && end.getTipo() != "NOT"){
+            
+            // Se agrega en el vector los datos de cada entrada para la tabla
+            
+            linea[contador_tabla] = end.anterior1.getDato();
+            contador_tabla++;       
+            linea[contador_tabla] = end.anterior2.getDato();
+            contador_tabla++;
+            
             Dato = Calculos((String)end.getTipo(), (int)end.anterior1.getDato(), (int)end.anterior2.getDato());
+            
+            
+            
         }
         return Dato;
     
 }
+      
+      
+   
     
     
     

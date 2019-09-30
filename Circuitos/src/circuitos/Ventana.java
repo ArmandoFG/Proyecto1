@@ -131,14 +131,7 @@ public class Ventana extends JFrame implements ActionListener{
         
         
     }
-    public void Tabla(){
-        
-        JFrame TablaVentana;
-        TablaVentana = new JFrame();
-        TablaVentana.setBounds(400, 400, 400, 300);
-        
-        
-    }
+    
     
 
     @Override

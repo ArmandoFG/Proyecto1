@@ -10,6 +10,7 @@ package Compuertas;
  * @author Armando Fallas
  * @version 1.2
  */
+// Operacion al realizar compuerta Or
 public interface OpOr {
     int operacion (int entrada1, int entrada2);
     

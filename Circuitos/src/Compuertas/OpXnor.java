@@ -9,6 +9,7 @@ package Compuertas;
  *
  * @author arman
  */
+// Operacion al realizar compuerta Xnor
 public interface OpXnor {
     int operacion (int entrada1, int entrada2);
     

@@ -1,15 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Compuertas;
 
 /**
  *
  * @author Armando Fallas
+ * @version 1.2
  */
 public class FactoryCrear{
+    
+    /**
+     * 
+     * @param choice    Tipo de compuerta
+     * @return 
+     * 
+     * Retorna de la Fabrica el tipo de compuerta que el usuario selecciono
+     */
+    
     public static Factory getFactory(String choice){
 	      if(choice.equalsIgnoreCase("OR")){                
 	         return new Factory();

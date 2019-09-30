@@ -22,6 +22,10 @@ import static circuitos.Nodo.ContNots;
 import static circuitos.Nodo.ContOrs;
 import static circuitos.Nodo.ContXnors;
 import static circuitos.Nodo.ContXors;
+import static circuitos.Panel1.contador_tabla;
+import static circuitos.Panel3.contador_tabla2;
+import static circuitos.Panel3.line2;
+import static circuitos.Panel3.linea;
 
 
 
@@ -240,6 +244,7 @@ public class Lista_Compuertas {
             OpAnd AND = Factory.getAND("AND");
             resultado = AND.operacion(entrada1, entrada2);
             
+            
         }else if(Compuerta == "NAND"){
             Comp_Factory Factory = FactoryCrear.getFactory("NAND");
             OpNand NAND = Factory.getNAND("NAND");
@@ -276,8 +281,12 @@ public class Lista_Compuertas {
             resultado = XOR.operacion(entrada1, entrada2);
             
         }
-        
+    linea[contador_tabla] = resultado;      // Se agrega en un array el resultado de cada compuerta para la tabla
+    contador_tabla++;
+    line2[contador_tabla2] = resultado;
+    contador_tabla2++;
     return resultado;       // Retorna el resultado de cada compuerta
+    
 }
     
     

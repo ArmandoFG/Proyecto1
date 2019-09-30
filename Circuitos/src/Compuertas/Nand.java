@@ -8,6 +8,7 @@ import static circuitos.Nodo_draw.cont_i1;
 import static circuitos.Nodo_draw.cont_i2;
 import static circuitos.Nodo_draw.cont_out;
 import static circuitos.Panel1.vectorNodos;
+import static circuitos.Panel3.MiTabla;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -64,6 +65,8 @@ public class Nand extends JLabel implements OpNand{
      * @param panel Donde se mostrara la compuerto tipo JPanel
      * @param Nodoas Nodo asociado de la lista enlazada de tipo Nodo
      * @param Nombre Nombre del nodo de tipo String
+     * 
+     * Crea el JLabel donde carga la imagen de la compuerta
      */
     
     
@@ -77,13 +80,16 @@ public class Nand extends JLabel implements OpNand{
         Nand.setIcon(new ImageIcon("C:\\Users\\arman\\OneDrive\\Escritorio\\Proyecto1\\Circuitos\\src\\Imagenes\\Nand.png"));
         panel.add(Nand);
         Nand.setName("Entrada0" + cont_Nand);
-        System.out.println(Nand.getName());
-        string = Nand.getGraphics();
-        string.drawString("I1", x - 7, y - 7);
-        vectorNodos.add(new Nodo_draw(Nand, NodoAs, Nombre, cont_i1, cont_i2, cont_out));
+        vectorNodos.add(new Nodo_draw(Nand, NodoAs, Nombre, cont_i1, cont_i2, cont_out));   // Agrega la imagen de la compuerta, el nodo asociado en la lista enlazada y los contadores de las compuertas
         cont_Nand += 1;
-        cont_i1 += 2;
-        cont_i2 += 2;
-        cont_out++;
+        cont_i1 += 2;   // Contador de entradas global
+        cont_i2 += 2;   // Contador de entradas global
+        cont_out++;     // Contador de salidas global
+        
+        // Agrega las columnas necesarias en la tabla
+        
+        MiTabla.addColumn(cont_i1);
+        MiTabla.addColumn(cont_i2);
+        MiTabla.addColumn("NAND");
 }
 }

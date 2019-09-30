@@ -8,6 +8,8 @@ import static circuitos.Nodo_draw.cont_i1;
 import static circuitos.Nodo_draw.cont_i2;
 import static circuitos.Nodo_draw.cont_out;
 import static circuitos.Panel1.vectorNodos;
+import static circuitos.Panel3.MiTabla;
+import static circuitos.Panel3.linea;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
@@ -80,6 +82,13 @@ public class And extends JLabel implements OpAnd{
         cont_i1 += 2;
         cont_i2 += 2;
         cont_out++;
+        
+        // Agrega las columnas necesarias en la tabla
+        
+        MiTabla.addColumn(cont_i1);
+        MiTabla.addColumn(cont_i2);
+        MiTabla.addColumn("AND");
+        
         }
    
     
@@ -89,7 +98,7 @@ public class And extends JLabel implements OpAnd{
      * 
      * @param entrada1  De tipo int almacena un 1 o 0
      * @param entrada2  De tipo int almacena un 1 o 0
-     * @return De tipo int retorna resultado
+     * @return          De tipo int retorna resultado
      */
     @Override
     public int operacion(int entrada1, int entrada2){
