@@ -16,7 +16,7 @@ public class Factory extends Comp_Factory {
     /**
      * 
      * @param tipoAnd   Tipo de compuerta
-     * @return 
+     * @return Devuelve una nueva compuerta
      */
     @Override
     public OpAnd getAND(String tipoAnd) {

@@ -64,8 +64,8 @@ public class Lista_Compuertas {
     
     /**
      * 
-     * @param indice 
-     * @return 
+     * @param indice    Posicion del nodo en la lista
+     * @return Devuelve nodo buscado en la lista
      */
     // Busca un nodo dentro de la lista
     
@@ -188,7 +188,7 @@ public class Lista_Compuertas {
     
     /**
      * 
-     * @param nombre        
+     * @param nombre    Nombre de compuerta 
      * @param dato      Dato 0 o 1
      */
     
@@ -230,7 +230,7 @@ public class Lista_Compuertas {
      * @param Compuerta Nombre
      * @param entrada1  0 o 1
      * @param entrada2  0 o 1
-     * @return 
+     * @return  Devuelve el resultado de cada operacion de cada compuerta
      */
     public static int Calculos(String Compuerta, int entrada1, int entrada2){
         /**

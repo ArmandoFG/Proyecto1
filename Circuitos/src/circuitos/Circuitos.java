@@ -30,7 +30,7 @@ public class Circuitos {
     
 
     /**
-     * @param args
+     * @param args  Metodo main
      */
     public static void main(String[] args) {
         

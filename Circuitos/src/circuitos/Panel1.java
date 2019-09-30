@@ -421,7 +421,7 @@ public class Panel1 extends JPanel implements ActionListener{
        /**
         * 
         * @param end // Almacena los Nodos de la lista hasta llegar al final
-        * @return 
+        * @return  // Devuelve el dato final del circuito
         */ 
     
         

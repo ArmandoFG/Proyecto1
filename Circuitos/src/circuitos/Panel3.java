@@ -85,7 +85,7 @@ public class Panel3 extends JPanel implements ActionListener {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Cuando se presione el mouse llama el metodo de calcular y muestra el resultado en el panel
+                // Cuando se presione el mouse llama el metodo de calcular y muestra el resultado en el panel, y calcula los resultados posibles de la tabla
                 if (e.getSource() == Iniciar){
                     
                     CalcularSalida();               
@@ -192,7 +192,7 @@ public class Panel3 extends JPanel implements ActionListener {
         TablaVentana = new JFrame();
         TablaVentana.setBounds(400, 400, 400, 300);
         
-        // Formado de la tabla
+        // Formado de la tabla y visibilidad de la tabla
         
         JTable TablaV = new JTable(MiTabla); 
         TablaVentana.add(new JScrollPane(TablaV));

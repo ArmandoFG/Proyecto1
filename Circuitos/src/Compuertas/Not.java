@@ -37,8 +37,7 @@ public class Not extends JLabel implements OpNot{
     
     /**
      * 
-     * @param entrada1  De tipo int almacena un 1 o 0
-     * @param entrada2  De tipo int almacena un 1 o 0
+     * @param entrada  De tipo int almacena un 1 o 0
      * @return De tipo int retorna resultado
      */
     @Override
