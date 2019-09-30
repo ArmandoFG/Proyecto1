@@ -37,6 +37,9 @@ public class Nodo_draw {
     public static int cont_out;
     int cont_OUT;
     
+    public static int cont_1;
+    public static int cont_2;
+    public static int cont_O;
    // Contructor de la compuerta
     
     /**
@@ -59,6 +62,9 @@ public class Nodo_draw {
         cont_I1 = contador1;
         cont_I2 = contador2;
         cont_OUT = contador3;
+        cont_1 = contador1;
+        cont_2= contador2;
+        cont_O = contador1;
         
 }
     

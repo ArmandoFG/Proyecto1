@@ -4,6 +4,7 @@ package Compuertas;
 import static circuitos.Circuitos.lc;
 import circuitos.Nodo;
 import circuitos.Nodo_draw;
+import static circuitos.Nodo_draw.cont_1;
 import static circuitos.Nodo_draw.cont_i1;
 import static circuitos.Nodo_draw.cont_i2;
 import static circuitos.Nodo_draw.cont_out;
@@ -84,7 +85,7 @@ public class Not extends JLabel implements OpNot{
         
         // Agrega las columnas necesarias en la tabla
         
-        MiTabla.addColumn(cont_i1);
+        MiTabla.addColumn(cont_1);
         MiTabla.addColumn("NOT");
     
 }
