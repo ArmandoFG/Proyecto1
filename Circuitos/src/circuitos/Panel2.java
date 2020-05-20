@@ -79,7 +79,7 @@ public class Panel2 extends JPanel  {
         
         // le asignamos color, bordes y el tamaño real que tendra el panel
         
-        this.setBackground(new java.awt.Color(113, 176, 140));
+        this.setBackground(new java.awt.Color(255, 255, 255));
         this.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(0, 0, 0), null, null));
         this.setPreferredSize(new java.awt.Dimension(800, 900));
       
